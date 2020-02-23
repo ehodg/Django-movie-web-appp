@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+	</head>
+    <body>
+        <form action="" name="search">
+        	<input type="text" name="query" />
+        	<input type="submit" />
+        </form>
+
+        {% for movie in seatch_result %}
+        	<p>{{ movie.fields.Name }}</p>
+        	<img src="{{ movie.fields.Pictures.0.url }}" alt="" />
+        {% endfor %}
+    </body>
+</html>
