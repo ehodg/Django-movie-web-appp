@@ -1,12 +1,69 @@
+<!DOCTYPE html>
+{% load static %}
+
 <html>
+    <head>
+        <!-- "This is the font-awsome styling css code" -->
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css" integrity="sha256-OksDpsEotGZHyoFCHRsdsld3UaZrCcE2d8jXU8rBjHo=" crossorigin="anonymous" />
+
+        <!-- "This is the anamation styling css code" -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU=" crossorigin="anonymous" />
+
+        <!-- "Bootstrap CSS" -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="{%static 'movies/app.css'%}" />
+    </head>
+
 	<body>
-        <form action="" name="search">
-        	<input type="text" name="query" value="{{request.GET.query}}"/>
-            <input type="submit" value="Search" />
-        </form>
-		{% for movie in search_result %}
-            <p>{{ movie.fields.Name }}</p>
-            <img src="{{ movie.fields.Pictures.0.url }}" alt="" />
-        {% endfor %}
+        <div class="wrapper">
+        	<nav class="nav">
+        		<div class="container">
+        			<div class="nav__menu">
+        				<a href="/" class="nav__header">Clever Movies</a>
+                        <div class="col-md-5 pull-right">
+                            <form action="" class="form-inline" name="search">
+                            	<div class="form-group">
+                            		<input type="text" name="wuery" class="form-control" valur="{{request.GET.query}}"/>
+                                    <input type="submit" class="btn btn-primary" valut="Search"/>
+                            	</div>
+                            </form>
+                        </div>
+        			</div>
+        		</div>
+        	</nav>
+
+            <section class="result">
+            	<div class="container">
+            		<div class="movies">
+            			{% for movie in search_result %}
+                        	<div class="movies__item">
+                                <i class="movies__item-star fas fa-star hide"></i>
+                                <p class="movies__item-rating hide">{{ movie.fields.Rating }}/10</p>
+                        		<img class="movies__item-image" src="{{ movie.fields.Pictures.0.url }}" alt="" />
+                                <div class="movies__item-title">
+                                	<p {{ movie.fields.Name }}></p>
+                                </div>
+                        	</div>
+                        {% endfor %}
+            		</div>
+            	</div>
+            </section>
+
+        </div>
+
+
+
+
+        <!-- "Jquery script" -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+        <!-- "Popper script" -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/popper.min.js" integrity="sha256-O17BxFKtTt1tzzlkcYwgONw4K59H+r1iI8mSQXvSf5k=" crossorigin="anonymous"></script>
+
+        <!-- "Bootstrap script" -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <script src="{% static 'movies/app.js' %}"></script>
 	</body>
 </html>
